@@ -49,7 +49,7 @@ FCMPlugin.subscribeToTopic('topicExample');
 FCMPlugin.onNotification(function(data){
     if(data.wasTapped){
       //Notification was received on device tray and tapped by the user.
-      alert( JSON.stringify(data) );
+      alert( JSON.stringify(data) +"siiii");
     }else{
       //Notification was received in foreground. Maybe the user needs to be notified.
       alert( JSON.stringify(data) );
