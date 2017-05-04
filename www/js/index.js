@@ -54,7 +54,11 @@ FCMPlugin.onNotification(function(data){
 	      //app abierta
       alert( JSON.stringify(data) +"foreground");
     }
-});
+},function(data){
+      alert( JSON.stringify(data) +"nuevo");
+}
+
+);
 
 
 
