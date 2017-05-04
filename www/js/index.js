@@ -51,7 +51,7 @@ FCMPlugin.onNotification(function(data){
       //Notification was received on device tray and tapped by the user.
       alert( JSON.stringify(data) +"tapped");
     }else{
-      //Notification was received in foreground. Maybe the user needs to be notified.
+	      //app abierta
       alert( JSON.stringify(data) +"foreground");
     }
 });
@@ -89,3 +89,60 @@ var app = {
     }
 
 };
+
+
+
+/*
+api:https://firebase.google.com/docs/cloud-messaging/http-server-ref?hl=es-419
+
+https://fcm.googleapis.com/fcm/send
+
+Content-Type: application/json
+Authorization: key=AIzaSyCG0KaF9XjpVv9v-X7dhc9bhZVRkjUPdZQ
+
+
+ejemplo mensaje con postman
+
+{ "data": {
+    "score": "5x1",
+    "time": "15:10"
+  },
+  "to":"dVFGzWxSllQ:APA91bHMRuKOClexDteZnZ_ReyUq-Nh7OI5qXo1lt-hpzGXmDderpOPI6Ayj-LAsMBImXDW7vKjEL9c_cIT8uWJYV6YCv2xyGN-PQWBswS3SHxHG49c7Tvnh9V9MZsAiz2Q5WmxqhZ8-"
+ 
+}
+
+
+{
+"to": "/topics/topicExample",
+  "data": {
+    "message": "This is a Firebase Cloud Messaging Topic Message!",
+   }
+}
+
+
+{
+"to": "/topics/topicExample",
+"notification" : {
+      "body" : "great match!",
+      "title" : "Portugal vs. Denmark",
+      "icon" : "myicon"
+    }
+  }
+
+
+   {
+"to": "/topics/topicExample",
+    "notification" : {
+      "body" : "great match!",
+      "title" : "Portugal vs. Denmark",
+      "icon" : "myicon"
+    },
+    "data" : {
+      "Nick" : "Mario",
+      "Room" : "PortugalVSDenmark"
+    }
+  }
+
+
+
+*/
