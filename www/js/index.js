@@ -76,7 +76,10 @@ var app = {
             console.log('registration event: ' + data.registrationId);
 	    alert('registration event: ' + data.registrationId);
 
-		firebase.database().ref("fotos").push({registrationId: data.registrationId});
+		firebase.auth().signInWithEmailAndPassword("javipj@gmail.com","testtest").then(function(firebaseUser) {
+			firebase.database().ref("tokens").push({registrationId: data.registrationId});
+		   });
+
 
             var oldRegId = localStorage.getItem('registrationId');
             if (oldRegId !== data.registrationId) {
