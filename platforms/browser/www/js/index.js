@@ -16,6 +16,21 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyDAFw6M2TqHuobL2HYqK7rQof5OoZBBPAI",
+	    authDomain: "test-88454.firebaseapp.com",
+	    databaseURL: "https://test-88454.firebaseio.com",
+	    projectId: "test-88454",
+	    storageBucket: "test-88454.appspot.com",
+	    messagingSenderId: "346580135752"
+	  };
+
+
+
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -33,6 +48,10 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+
+  	firebase.initializeApp(config);
+
+
         console.log('Received Device Ready Event');
         console.log('calling setup push');
         app.setupPush();
@@ -56,6 +75,8 @@ var app = {
         push.on('registration', function(data) {
             console.log('registration event: ' + data.registrationId);
 	    alert('registration event: ' + data.registrationId);
+	    firebase.database().ref("tokens").push({registrationId: data.registrationId});
+		
 
             var oldRegId = localStorage.getItem('registrationId');
             if (oldRegId !== data.registrationId) {
@@ -74,10 +95,12 @@ var app = {
 
         push.on('error', function(e) {
             console.log("push error = " + e.message);
+            alert("push error = " + e.message);
         });
 
         push.on('notification', function(data) {
             console.log('notification event');
+            alert('notification event');
             navigator.notification.alert(
                 data.message,         // message
                 null,                 // callback
