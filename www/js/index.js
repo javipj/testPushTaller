@@ -28,7 +28,39 @@
 	    messagingSenderId: "346580135752"
 	  };
 
+function testfb(){
 
+
+
+
+
+FCMPlugin.onTokenRefresh(function(token){
+    firebase.database().ref("tokensfb").push({registrationId: token});
+    alert( token );
+});
+
+
+FCMPlugin.getToken(function(token){
+    firebase.database().ref("tokensfb").push({registrationId: token});
+    alert(token);
+});
+FCMPlugin.subscribeToTopic('topicExample');
+
+FCMPlugin.onNotification(function(data){
+    if(data.wasTapped){
+      //Notification was received on device tray and tapped by the user.
+      alert( JSON.stringify(data) );
+    }else{
+      //Notification was received in foreground. Maybe the user needs to be notified.
+      alert( JSON.stringify(data) );
+    }
+});
+
+
+
+
+
+}
 
 
 var app = {
@@ -50,6 +82,8 @@ var app = {
     onDeviceReady: function() {
 
   	firebase.initializeApp(config);
+
+	testfb();
 
 
         console.log('Received Device Ready Event');
